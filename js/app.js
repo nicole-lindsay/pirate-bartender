@@ -43,4 +43,14 @@ $(document).ready(function() {
         $('#drinkQuestions').append(tastePref[question] + '<input type="checkbox" value="' + question + '"> <br>');
     }
 
+    $('#drinks').on('submit', function(e){
+    	e.preventDefault();
+    	var array = $('input:checked')
+
+    	if (array.length == 0){
+    		alert("Choose a drink option");
+    	} else {
+    		
+    	}
+    })
 });
