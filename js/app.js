@@ -13,7 +13,6 @@ $(document).ready(function() {
         this.value = value;
     };
 
-
     var Pantry = function(spicy, strong, salty, bitter, sweet, fruity) {
         this.spicy = spicy;
         this.strong = strong;
@@ -23,8 +22,10 @@ $(document).ready(function() {
         this.fruity = fruity;
     };
 
-
-    var piratePantry = new Pantry([new Ingredient('spicy', 'ghost pepper')], [new Ingredient('strong', 'glug of rum'),
+    var piratePantry = new Pantry([new Ingredient('spicy', 'ghost pepper garnish'),
+        new Ingredient('spicy', 'touch of tabasco'),
+        new Ingredient('spicy', 'splash of sriracha')
+    ], [new Ingredient('strong', 'glug of rum'),
         new Ingredient('strong', 'slug of whiskey'),
         new Ingredient('strong', 'splash of gin')
     ], [new Ingredient('salty', 'olive on a stick'),
@@ -51,17 +52,15 @@ $(document).ready(function() {
         e.preventDefault();
         var array = $('input:checked');
         if (array.length == 0) {
-            alert("Choose a drink option");
+            alert("Arrrgh, pick yer poison or be on yer way");
         } else {
-        	for (var i = 0; i < array.length; i++) {
-        		preferences[$(array[i]).val()] = true;
-        	}
-        	for (var value in preferences) {
-        		console.log(piratePantry[value][0].value);
-        		$('#drinkAnswers').append(piratePantry[value][0].value + '<br>');
-        	}
-        	// [0] in line 61 to be replaced with Math.floor random number
-        	// array?? If statement within else? 
+            for (var i = 0; i < array.length; i++) {
+                preferences[$(array[i]).val()] = true;
+            }
+            for (var value in preferences) {
+                var randomNumber = Math.floor((Math.random() * 100) + 1) % 3;
+                $('#drinkAnswers').append(piratePantry[value][randomNumber].value + '<br>');
+            }
         }
     });
 });
