@@ -22,6 +22,17 @@ $(document).ready(function() {
         this.fruity = fruity;
     };
 
+    var Bartender = function() {
+        this.createDrink = function(preferences, piratePantry) {
+            for (var value in preferences) {
+                var randomNumber = Math.floor((Math.random() * 100) + 1) % 3;
+                $('#drinkAnswers').append(piratePantry[value][randomNumber].value + '<br>');
+            }
+        }
+    };
+
+    var nicole = new Bartender();
+
     var piratePantry = new Pantry([new Ingredient('spicy', 'ghost pepper garnish'),
         new Ingredient('spicy', 'touch of tabasco'),
         new Ingredient('spicy', 'splash of sriracha')
@@ -59,10 +70,8 @@ $(document).ready(function() {
             for (var i = 0; i < array.length; i++) {
                 preferences[$(array[i]).val()] = true;
             }
-            for (var value in preferences) {
-                var randomNumber = Math.floor((Math.random() * 100) + 1) % 3;
-                $('#drinkAnswers').append(piratePantry[value][randomNumber].value + '<br>');
-            }
+            // bartender serves the drink here
+            nicole.createDrink(preferences, piratePantry);
         }
     });
 });
