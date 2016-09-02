@@ -50,7 +50,9 @@ $(document).ready(function() {
 
     $('#drinks').on('submit', function(e) {
         e.preventDefault();
+        $('#drinkAnswers').empty();
         var array = $('input:checked');
+        $('input').prop('checked', false);
         if (array.length == 0) {
             alert("Arrrgh, pick yer poison or be on yer way");
         } else {
